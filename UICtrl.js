@@ -15,9 +15,9 @@ const UICtrl = (function() {
 
     // Public method
     return {
-        populateItemList: function(items) {
+        populateItemList: (items) => {
             let html = '';
-            items.forEach(function(item) {
+            items.forEach((item) => {
                 html += `<li class="collection-item" id="item-${item.id}">
                 <strong>${item.name}: </strong><em>${item.calories} Calories</em>
                 <a href="#" class="secondary-content"><i class="edit-item fa fa-pencil"></i>
@@ -28,13 +28,13 @@ const UICtrl = (function() {
             document.querySelector(UISelectors.itemList).innerHTML = html; 
         },
         // get values that user has typed into inputs
-        getItemInput: function() {
+        getItemInput: () => {
             return {
                 name: document.querySelector(UISelectors.itemNameInput).value,
                 calories: document.querySelector(UISelectors.itemCaloriesInput).value
             } 
         },
-        addListItem: function(item) {
+        addListItem: (item) => {
 
             document.querySelector(UISelectors.itemList).style.display = 'block';
 
@@ -51,7 +51,7 @@ const UICtrl = (function() {
         
             document.querySelector(UISelectors.itemList).insertAdjacentElement('beforeend', li);
         },
-        updateListItem: function(item) {
+        updateListItem: (item) => {
             // returns a node list
             // cannot loop through a nodeList
             // so need to convert into an array (below)
@@ -59,7 +59,7 @@ const UICtrl = (function() {
             
             listItems = Array.from(listItems);
             
-            listItems.forEach(function(listItem) {
+            listItems.forEach((listItem) => {
                 const itemId = listItem.getAttribute('id');
                 if(itemId === `item-${item.id}`) {
                     // display/change list item in UI
@@ -69,7 +69,7 @@ const UICtrl = (function() {
                 }
             })
         },
-        deleteListItem: function(id) {
+        deleteListItem: (id) => {
             const itemId = `#item-${id}`;
 
             let item = document.querySelector(itemId);
@@ -83,7 +83,7 @@ const UICtrl = (function() {
             UICtrl.clearEditState();
     
         },
-        removeItems: function() {
+        removeItems: () => {
             let listItems = document.querySelectorAll(UISelectors.listItems);
 
             listItems = Array.from(listItems);
@@ -97,7 +97,7 @@ const UICtrl = (function() {
 
             UICtrl.hideList();
         },
-        addItemToForm: function() {
+        addItemToForm: () => {
             document.querySelector(UISelectors.itemNameInput).value = ItemCtrl.getCurrentItem().name;
             document.querySelector(UISelectors.itemCaloriesInput).value = ItemCtrl.getCurrentItem().calories;
             UICtrl.showEditState();
@@ -105,27 +105,27 @@ const UICtrl = (function() {
         showTotalCalories: function(caloriesCount) {
             document.querySelector(UISelectors.totalCalories).textContent = caloriesCount;
         },
-        hideList: function() {
+        hideList: () => {
             document.querySelector(UISelectors.itemList).style.display = 'none';
         },
-        clearInput: function() {
+        clearInput: () => {
             document.querySelector(UISelectors.itemNameInput).value = '';
             document.querySelector(UISelectors.itemCaloriesInput).value = '';
         },
-        clearEditState: function() {
+        clearEditState: () => {
             UICtrl.clearInput();
             document.querySelector(UISelectors.backBtn).style.display = 'none';
             document.querySelector(UISelectors.updateBtn).style.display = 'none';
             document.querySelector(UISelectors.deleteBtn).style.display = 'none';
             document.querySelector(UISelectors.addBtn).style.display = 'inline';
         },
-        showEditState: function() {
+        showEditState: () => {
             document.querySelector(UISelectors.backBtn).style.display = 'inline';
             document.querySelector(UISelectors.updateBtn).style.display = 'inline';
             document.querySelector(UISelectors.deleteBtn).style.display = 'inline';
             document.querySelector(UISelectors.addBtn).style.display = 'none';
         },
-        getSelectors: function() {
+        getSelectors: () => {
             return UISelectors;
         } 
     }
