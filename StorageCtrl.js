@@ -1,7 +1,7 @@
 // Storage Controller 
-const StorageCtrl = (function() {
+const StorageCtrl = (() => {
     return {
-        storeItem: function(item) {
+        storeItem: (item) => {
             let items
 
             if(localStorage.getItem('items') === null) {
@@ -21,7 +21,7 @@ const StorageCtrl = (function() {
                 localStorage.setItem('items', JSON.stringify(items));
             }
         },
-        getItemsFromLocalStorage: function() {
+        getItemsFromLocalStorage: () => {
             let items;
             if(localStorage.getItem('items') === null) {
                 items = [];
@@ -30,19 +30,19 @@ const StorageCtrl = (function() {
             }
             return items;
         },
-        updateItemStorage: function(updatedItem) {
+        updateItemStorage: (updatedItem) => {
             let items = JSON.parse(localStorage.getItem('items'));
             // loop through items from ls
             // check if the updated item id matches item id within items from ls
             // find index of item in ls, remove it and replace with updated item
-            items.forEach(function(item, index) {
+            items.forEach((item, index) => {
                 if(updatedItem.id === item.id) {
                     items.splice(index, 1, updatedItem)
                 }
             })
             localStorage.setItem('items', JSON.stringify(items));
         },
-        removeItemFromStorage: function(id) {
+        removeItemFromStorage: (id) => {
             let items = JSON.parse(localStorage.getItem('items'));
             items.forEach(function(item, index) {
                 if(id === item.id) {
@@ -55,4 +55,4 @@ const StorageCtrl = (function() {
             localStorage.clear('items');
         }
     }
-}())
+})();
