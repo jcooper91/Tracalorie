@@ -1,5 +1,5 @@
 // UI Controller
-const UICtrl = (function() {
+const UICtrl = (() => {
     const UISelectors = {
         itemList: "#item-list",
         listItems: "#item-list li",
