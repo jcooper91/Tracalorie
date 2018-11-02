@@ -1,9 +1,3 @@
-// All methods within the below that return a function are public functions
-
-
-
-
-
 // App Controller
 const App = (function(ItemCtrl, StorageCtrl, UICtrl) {
 
