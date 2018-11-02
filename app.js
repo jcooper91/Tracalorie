@@ -1,8 +1,8 @@
 // App Controller
-const App = (function(ItemCtrl, StorageCtrl, UICtrl) {
+const App = ((ItemCtrl, StorageCtrl, UICtrl)  => {
 
     // get ID's and CLASSES of elements in the DOM
-    const loadEventListeners = function() {
+    const loadEventListeners = () => {
         
         const UISelectors = UICtrl.getSelectors();
         
@@ -10,7 +10,7 @@ const App = (function(ItemCtrl, StorageCtrl, UICtrl) {
         document.querySelector(UISelectors.addBtn).addEventListener('click', itemAddSubmit);
 
         // disable enter key for submit
-        document.addEventListener('keypress', function(e) {
+        document.addEventListener('keypress', (e) => {
             if(e.keyCode === 13 || e.which === 13) {
                 e.preventDefault();
                 return false;
@@ -35,7 +35,7 @@ const App = (function(ItemCtrl, StorageCtrl, UICtrl) {
     }
 
     // add an item submit to ui and data structure
-    const itemAddSubmit = function(e) {
+    const itemAddSubmit = (e) => {
 
        const input = UICtrl.getItemInput();
 
@@ -60,7 +60,7 @@ const App = (function(ItemCtrl, StorageCtrl, UICtrl) {
         e.preventDefault();
     }
     // delete item from data structure and UI
-    itemDeleteSubmit = function(e) {
+    itemDeleteSubmit = (e) => {
 
         // get current item
         const currentItem = ItemCtrl.getCurrentItem();
@@ -76,7 +76,7 @@ const App = (function(ItemCtrl, StorageCtrl, UICtrl) {
     }
 
     // click edit item
-    const itemEditClick = function(e) {
+    const itemEditClick = (e) => {
         if(e.target.classList.contains('edit-item')) {
 
             const listId = e.target.parentNode.parentNode.id;
@@ -96,7 +96,7 @@ const App = (function(ItemCtrl, StorageCtrl, UICtrl) {
         e.preventDefault();
     }
 
-    const itemUpdateSubmit = function(e) {
+    const itemUpdateSubmit = (e) => {
 
         const item = UICtrl.getItemInput();
 
@@ -116,7 +116,7 @@ const App = (function(ItemCtrl, StorageCtrl, UICtrl) {
         e.preventDefault();
     }
 
-    const clearAllItemsClick = function(e) {
+    const clearAllItemsClick = (e) => {
 
         // delte all data from structure
         ItemCtrl.clearAllItems();
